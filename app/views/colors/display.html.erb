@@ -1,0 +1,11 @@
+<h1>Try to identify this color!</h1>
+<p>Give your answer in the form of a 3-digit hex code</p>
+<div class="square_box" style="background-color: <%= @rand_color %>">
+  	
+</div>
+
+<%= form_tag(colors_score_path, method: "post") do %>
+  <%= text_field_tag(:players_color) %>
+  <%= hidden_field_tag(:original_color, @rand_color) %>
+  <%= submit_tag("Submit") %>
+<% end %>
