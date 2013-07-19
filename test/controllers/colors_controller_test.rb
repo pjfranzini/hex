@@ -7,8 +7,18 @@ class ColorsControllerTest < ActionController::TestCase
   end
 
   test "should get score" do
-    get :score
+    post :score, {:original_color => '#fff',:players_color => '#fff'}
     assert_response :success
+  end
+
+  test "score is appropriate (worst)" do
+    post :score, {:original_color => '#000',:players_color => '#fff'}
+    assert_in_delta(0, assigns(:score), 0.001)
+  end
+
+  test "score is appropriate (best)" do
+    post :score, {:original_color => '#000',:players_color => '#000'}
+    assert_in_delta(100, assigns(:score), 0.001)
   end
 
 end
