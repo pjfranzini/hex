@@ -1,6 +1,6 @@
 <h1>Score</h1>
 
- <p>The original color was: <%= @original_color %> </p>
- <p>You said it was: <%= @players_color %> </p>
- <p>You are <%= @score %> percent right </p>
+ <p>The original color was: <%= @computer_color.rgbvalue %> </p>
+ <p>You said it was: <%= @players_rgbvalue %> </p>
+ <p>You are <%= @score.to_s(:human) %> percent right </p>
 
