@@ -1,0 +1,44 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+/*.square_box {
+  margin: 10px;
+  width: 1200px;
+  height: 400px;
+  border: 1px solid black;
+  opacity: .96;
+}*/
+.hex-ui {
+  background: image-url("testW.jpg") top center no-repeat;
+  background-size: cover;
+  padding: 0px;
+   border: 15px solid #f0f0f6;
+      -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+   border-radius: 15px;
+   margin: 15px 15px 0px 15px;
+/*  opacity: .03;*/
+}
+.myclass {
+  opacity: .95;
+  color: #000;
+  padding: 120px;
+  margin-top: -20px;
+  margin-bottom:-1px;
+}
+.navbar, .navbar-inner {
+
+        -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+   border-radius: 0px;
+}

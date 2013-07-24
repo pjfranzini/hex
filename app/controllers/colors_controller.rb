@@ -1,7 +1,8 @@
 class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
-  	@computer_color = Color.all.shuffle.first
+    @difficulty = params[:difficulty]
+  	@computer_color = Color.where({difficulty_level: @difficulty }).shuffle.first
 
   end
   # def string_difference(a,b)

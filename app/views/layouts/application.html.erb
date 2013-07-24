@@ -7,8 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <div id="main">
-      <div class="container">
+    <div class="hex-ui">
+      <div class="navbar navbar-inverse">
+       <div class="navbar-inner">
+          <ul class="nav">
+            <li><a href="/colors/display/easy">Easy</a></li>
+            <li><a href="/colors/display/medium">Medium</a></li>
+            <li><a href="/colors/display/hard">Hard</a></li>
+          </ul>
+       </div>
+      </div>
+
+      <div class="myclass" style="background-color: <%= @computer_color.rgbvalue %>;
+        <% if @computer_color.is_dark? %>
+          color: #fff
+        <% end %>
+          ">
         <%= yield %>
     </div>
   </div>

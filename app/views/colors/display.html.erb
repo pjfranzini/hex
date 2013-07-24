@@ -1,8 +1,15 @@
 <h1>Try to identify this color!</h1>
-<p>Give your answer in the form of a 3-digit hex code</p>
-<div class="square_box" style="background-color: <%= @computer_color.rgbvalue %>">
-  	
-</div>
+<% if @difficulty == 'easy' %>
+  <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's and f's)</p>
+<% elsif @difficulty == 'medium' %>
+  <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's, 7's and f's)</p>
+<% elsif @difficulty == 'hard' %>
+  <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's, 4's, 9's and f's)</p>
+
+<% end %>
+<!-- <div class="square_box">
+
+</div> -->
 
 <%= form_tag(colors_score_path, method: "post") do %>
   <%= text_field_tag(:players_rgbvalue) %>
