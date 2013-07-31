@@ -9,5 +9,9 @@ class ColorsController < ApplicationController
     @computer_color = Color.find(params[:computer_color_id])
     @players_rgbvalue = params[:players_rgbvalue]
     @score = @computer_color.color_difference(@players_rgbvalue)
+    respond_to do |format|
+        format.html { }
+        format.js { }
+      end
   end
 end
