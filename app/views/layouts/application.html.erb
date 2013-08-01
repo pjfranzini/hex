@@ -21,10 +21,14 @@
       <div class="myclass" style="background-color: <%= @computer_color.rgbvalue %>;
         <% if @computer_color.is_dark? %>
           color: #fff
+        <% else %>
+          color: #000
         <% end %>
           ">
-        <%= yield %>
-    </div>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
   </div>
 </body>
 </html>

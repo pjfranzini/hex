@@ -3,4 +3,6 @@
  <p>The original color was: <%= @computer_color.rgbvalue %> </p>
  <p>You said it was: <%= @players_rgbvalue %> </p>
  <p>You are <%= @score.to_s(:human) %> percent right </p>
+ <p> diff <%= @difficulty %> </p>
 
+ <%= link_to 'Next Color', color_path(@difficulty), class: "btn btn-small btn-success"%>
