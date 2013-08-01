@@ -23,6 +23,7 @@ class ColorsController < ApplicationController
   end
   private
   def make_session_array_if_needed
+    # make it unless it already exists
     unless session[:color_array]
       # to maintain memory of color set within a minigame we create a shuffled array once and then reuse it till all the colors are gone
       @computer_color_array = Color.where({difficulty_level: @difficulty }).shuffle
@@ -31,10 +32,12 @@ class ColorsController < ApplicationController
       @computer_color_array.each do |color_obj|
         color_array << color_obj.rgbvalue
       end
+      # for each color object, we push its rgbvalue into color array
       session[:color_array] = color_array
     end
   end
   def reset_color_array_if_user_changed_difficulty
+    # if there is a difficulty already set in session, and user sends in a different one via params, clear the session memory of color_array
     if session[:difficulty] && params[:difficulty] != session[:difficulty]
       session[:color_array] = nil
     end
