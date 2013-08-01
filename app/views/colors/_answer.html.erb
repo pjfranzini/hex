@@ -1,11 +1,15 @@
 <h1>Score</h1>
-
- <p>The original color was: #<%= @computer_color.rgbvalue %> </p>
- <p>You said it was: #<%= @players_rgbvalue %> </p>
- <p>You are <%= @score.to_s(:human) %> percent right </p>
- <p> </p>
- <p class="big-type"> Total Score <%= @cumulative_score.to_s(:human) %>/<%= @max_possible_score.to_s(:human) %>
- </p>
- <!-- <p> diff <%= @difficulty %> </p> -->
- <p>There are <%= @colors_left.to_s(:human) %> colors left in this set</p>
- <%= link_to 'Next Color', color_path(@difficulty), class: "btn btn-small btn-success"%>
+  <p>The color was: #<%= @computer_color.rgbvalue %>  and you said: #<%= @players_rgbvalue %> </p>
+  <p>You are <%= @score.round(0) %> percent right </p>
+  <% if @colors_left > 0 %>
+    <p class="big-type"> Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>
+    </p>
+   <!-- <p> diff <%= @difficulty %> </p> -->
+    <p>There are <%= @colors_left.round(0) %> colors left in this set</p>
+    <%= link_to 'Next Color', color_path(@difficulty), class: "btn btn-small btn-success"%>
+  <% else %>
+    <p class="big-type"> Congratulations! You finished the set.</p>
+     <p class="big-type"> Final Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.to_s %>
+    </p>
+    <%= link_to 'New Game', root_path, class: "btn btn-small btn-success"%>
+  <% end %>
