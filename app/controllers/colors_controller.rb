@@ -10,6 +10,10 @@ class ColorsController < ApplicationController
   	@computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
     # decrement number of colors left in session
     session[:num_colors] -= 1
+    respond_to do |format|
+    format.html { }
+    format.js { }
+    end
 
   end
 
@@ -28,7 +32,7 @@ class ColorsController < ApplicationController
     respond_to do |format|
         format.html { }
         format.js { }
-      end
+    end
   end
   private
   def make_session_array_if_needed
