@@ -20,9 +20,8 @@ class Color < ActiveRecord::Base
     # darkness -- green << red << blue so do a weighted average when deciding to go to white lettering
     total = 0.0
     color_weight = [2,3,1]
-    # this awkward length -1 and [i+1] is because rgbvalue is #abc and we have to skip over the #
-    (rgbvalue.length - 1).times do |i|
-      total += rgbvalue[i+1].to_i(16) * color_weight[i]
+    rgbvalue.length.times do |i|
+      total += rgbvalue[i].to_i(16) * color_weight[i]
     end
     total/color_weight.sum < 6
 
