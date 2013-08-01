@@ -1,7 +1,7 @@
 class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
-    reset_color_array_if_user_changed_difficulty
+    reset_everything_if_user_changed_difficulty
 
     @difficulty = params[:difficulty] || "easy"
     session[:difficulty] = @difficulty
@@ -15,6 +15,11 @@ class ColorsController < ApplicationController
     @computer_color = Color.find(params[:computer_color_id])
     @players_rgbvalue = params[:players_rgbvalue]
     @score = @computer_color.color_difference(@players_rgbvalue)
+    make_cumulative_score_if_needed
+    session[:cumulative_score] += @score
+    session[:max_possible_score] += 100
+    @cumulative_score = session[:cumulative_score]
+    @max_possible_score = session[:max_possible_score]
     @difficulty = session[:difficulty]
     respond_to do |format|
         format.html { }
@@ -36,10 +41,19 @@ class ColorsController < ApplicationController
       session[:color_array] = color_array
     end
   end
-  def reset_color_array_if_user_changed_difficulty
-    # if there is a difficulty already set in session, and user sends in a different one via params, clear the session memory of color_array
+  def make_cumulative_score_if_needed
+    # make it unless it already exists
+    unless session[:cumulative_score]
+      session[:cumulative_score] = 0
+      session[:max_possible_score] = 0
+    end
+  end
+  def reset_everything_if_user_changed_difficulty
+    # if there is a difficulty already set in session, and user sends in a different one via params, clear the session memory of color_array and score
     if session[:difficulty] && params[:difficulty] != session[:difficulty]
       session[:color_array] = nil
+      session[:cumulative_score] = nil
+      session[:max_possible_score] = nil
     end
   end
 end
