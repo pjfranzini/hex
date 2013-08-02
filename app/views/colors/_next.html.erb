@@ -1,0 +1,8 @@
+<!-- partial to deal with the next color/new game logic -->
+<% if @colors_left > 0 %>
+  <%= link_to 'Next Color', color_path(@difficulty), class: 'btn btn-large btn-success' %>"
+
+<% else %>
+   <%= link_to 'New Game', root_path, class: "btn btn-large btn-primary "%>
+
+<% end %>
