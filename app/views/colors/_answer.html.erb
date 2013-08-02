@@ -1,12 +1,12 @@
 <h1>Score</h1>
   <p>The color was: #<%= @computer_color.rgbvalue %>  and you said: #<%= @players_rgbvalue %> </p>
-  <p>You are <%= @score.round(0) %> percent right </p>
+  <p class="big-type"> <%= @score.round(0) %> percent right
+  <%= "!!!!!" if  @score.round(0) == 100 %>
+  </p>
   <% if @colors_left > 0 %>
-    <p class="big-type"> Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>
-    </p>
-   <!-- <p> diff <%= @difficulty %> </p> -->
+
     <p>There are <%= @colors_left.round(0) %> colors left in this set</p>
-    <%= link_to 'Next Color', color_path(@difficulty), class: "btn btn-small btn-success"%>
+
   <% else %>
     <p class="big-type"> Congratulations! You finished the set.</p>
      <p class="big-type"> Final Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.to_s %>
