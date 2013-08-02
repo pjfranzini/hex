@@ -5,7 +5,7 @@
   </p>
   <% if @colors_left > 0 %>
 
-    <p>There are <%= @colors_left.round(0) %> colors left in this set</p>
+    <p>There <%= singularize_are(@colors_left.round(0)) + ' ' + pluralize(@colors_left.round(0), 'color') %> left in this set</p>
 
   <% else %>
     <p class="big-type"> Congratulations! You finished the set.</p>
