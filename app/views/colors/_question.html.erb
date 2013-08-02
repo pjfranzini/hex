@@ -1,15 +1,15 @@
 <div class="row">
   <div class="span5 display-content">
     <h1>Try to identify this color!</h1>
+    <p>Give your answer in the form of a 3-digit RGB hex code
     <% if @difficulty == 'easy' %>
-      <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's and f's)</p>
+       (all the codes at this level are composed of 0's and f's)
     <% elsif @difficulty == 'medium' %>
-      <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's, 7's and f's)</p>
+       (all the codes at this level are composed of 0's, 7's and f's)
     <% elsif @difficulty == 'hard' %>
-      <p>Give your answer in the form of a 3-digit hex code (all the codes at this level are composed of 0's, 4's, 9's and f's)</p>
-
+       (all the codes at this level are composed of 0's, 4's, 9's and f's)
     <% end %>
-
+    </p>
     <%= form_tag(colors_score_path, method: "post", remote: true) do %>
       <%= text_field_tag(:players_rgbvalue) %>
       <%= hidden_field_tag(:computer_color_id, @computer_color.id) %>
