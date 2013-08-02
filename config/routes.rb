@@ -2,6 +2,7 @@ Hex::Application.routes.draw do
   root 'colors#display'
   get "colors/display/:difficulty", to: 'colors#display', as: "color"
   post "colors/score"
+  get "colors/help"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

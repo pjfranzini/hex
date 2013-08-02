@@ -38,6 +38,11 @@ class ColorsController < ApplicationController
         format.js { }
     end
   end
+
+  def help
+    @computer_color = Color.find(2)
+  end
+
   private
   def make_session_array_if_needed
     # make it unless it already exists
