@@ -10,6 +10,10 @@ class ColorsController < ApplicationController
   	@computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
     # decrement number of colors left in session
     session[:num_colors] -= 1
+
+    @cumulative_score = session[:cumulative_score] if session[:cumulative_score]
+    @max_possible_score = session[:max_possible_score] if session[:max_possible_score]
+
     respond_to do |format|
     format.html { }
     format.js { }

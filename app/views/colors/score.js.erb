@@ -1,3 +1,5 @@
 $('.score-content').show();
 $('.score-content').html("<%= escape_javascript render('answer') %>");
-$('.display-content').html("<%= escape_javascript link_to 'Next Color', color_path(@difficulty), class: 'btn btn-small btn-success' %>")
+$('.display-content').html("<%= escape_javascript link_to 'Next Color', color_path(@difficulty), class: 'btn btn-small btn-success' %>");
+ $('.score-bar').html(" Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>")
+
