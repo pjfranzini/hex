@@ -1,17 +1,28 @@
+<div class="help">
 <h1>A quick guide to RGB hex codes</h1>
 <p>In computer applications, color is often specified using a three or six digit hex code. The shorthand three digit form is somewhat simpler and is what we explore in this app. </p>
-<p>Using three hexadecimal digits, we can express 16*16*16 = 4096 different colors. Each digit can take on 16 different values: 0 1 2 3 4 5 6 7 8 9 a b c d e f. The first digit represents red; the second green; and the third blue. 0 is the most dark; f is the most light. Thus
-<span class="black">  000 is  black</span>;
- <span class="white">   fff is white</span>;
- <span class="red">   f00 is red</span>;
- <span class="green">  0f0 is green</span>;
- <span class="blue">  00f is blue</span>.
+<p>The smallest addressable element on a computer screen, known as a  pixel, is made of three tiny light sources, one red, one green and one blue. The intensity of each source is controllable separately, allowing the user to create many different colors. </p>
+<p>
+  In a three digit hex code, the intensity of each source is expressed by one single hexadecimal digit. Each digit can take on 16 different values: 0 1 2 3 4 5 6 7 8 9 a b c d e f. 0 represents a source that is full off, or dark, while f represents fully on, or bright. Using three hexadecimal digits, we can express 16*16*16 = 4096 different colors.
+</p>
+<p>  The first digit represents red; the second green; and the third blue. Thus f00 represents a pixel where red is fully on and green and blue are off; therefore <span class="red">   f00 is red</span>. Similarly  <span class="green">  0f0 is green</span> and
+ <span class="blue">  00f is blue</span>. When the three sources are all off, we have <span class="black">  000,  black</span>. When the three sources are all on, they add up to
+ <span class="white">   fff, white</span>.
+
 </p>
 <p>
 Color combines on a computer by mixing light, i.e., additively. This results in combinations that may be surprising if one is used to thinking of color combining subtractively, e.g., like mixing paints. </p>
-<p>The biggest surprise is probably that red light plus green light gives yellow, so <span class="yellow">ff0 is yellow</span>. Green light plus blue light gives cyan (or blue-green), so <span class="cyan">0ff is cyan</span>. Finally, red light plus blue light gives magenta, so <span class="magenta">f0f is magenta</span>.
+<p>The biggest surprise is probably that red light plus green light gives yellow, so <span class="yellow">ff0 is yellow</span>. Green light plus blue light gives cyan (or blue-green), so <span class="cyan">0ff is cyan</span>. Finally, red light plus blue light gives magenta, so <span class="magenta">f0f is magenta</span>. How about orange? Orange is half way between red (f00) and yellow (ff0), so <span class="orange">f70 would be an orange hue</span>.
 </p>
-<p>
 
+<p>In this app, the <strong>easy</strong> set consists of the 8 colors that can be made with various combinations of the digits 0 and f. The <strong>medium</strong> set consists of the 19 colors made of 0, 7 and f, excluding the 8 in <strong>easy</strong>. And the <strong>hard</strong> set consists of the 56 colors made of 0, 4, 9 and f, again excluding the basic 8.</p>
+
+<p>You can enter a hex code in the form below and click the button to see what color that code gives. Type something of the format <strong>hhh</strong>, where h is a hexadecimal digit (0-9, a-f) </p>
+
+<%= render "hexify" %>
+<p>
   (See for example <a href="http://en.wikipedia.org/wiki/RGB_color_model">this Wikipedia article</a> for further details about the RGB color model).
   </p>
+
+
+</div>

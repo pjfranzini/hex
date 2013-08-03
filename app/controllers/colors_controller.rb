@@ -23,9 +23,8 @@ class ColorsController < ApplicationController
 
   def score
     @computer_color = Color.find(params[:computer_color_id])
-    @players_rgbvalue = params[:players_rgbvalue]
+    @players_rgbvalue = params[:players_rgbvalue].gsub(/[#]/, '')
     #allow player to input colors with or without # in front
-    @players_rgbvalue =  @players_rgbvalue.gsub(/[#]/, '')
     @score = @computer_color.color_difference(@players_rgbvalue)
     session[:cumulative_score] += @score
     session[:max_possible_score] += 100
@@ -40,7 +39,15 @@ class ColorsController < ApplicationController
   end
 
   def help
+    # since layout uses a color object to set background color, pull up color 2 (white) for background of help page
     @computer_color = Color.find(2)
+  end
+
+  def visualize
+    # since we don't count on the user putting a #, strip it off if it is there and put it back on
+    @see_this_color = '#'+params[:see_this_color].gsub(/[#]/, '')
+    @computer_color = Color.find(2)
+
   end
 
   private

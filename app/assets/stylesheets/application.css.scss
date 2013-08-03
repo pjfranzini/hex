@@ -26,10 +26,15 @@
 .myclass {
   opacity: .95;
   color: #000;
-  padding: 80px 0px 80px 0px;
+  padding: 40px 0px 70px 0px;
   margin-top: -20px;
   margin-bottom:-1px;
 }
+.color-box{
+  width: 100px;
+  height: 100px;
+}
+
 .big-type{
    font-size: 24px;
    font-weight: bold;
@@ -52,10 +57,12 @@
   margin-left: 100px}
 
   .black {background-color: #000; color: #fff;}
-  .white {background-color: #fff; color: #000;}
+  .white {background-color: #fff; color: #000;
+    border: 1px solid #000;}
   .red {background-color: #f00; color: #fff;}
   .green {background-color: #0f0; color: #000;}
   .blue {background-color: #00f; color: #fff;}
   .cyan {background-color: #0ff; color: #000;}
 .yellow {background-color: #ff0; color: #000;}
 .magenta {background-color: #f0f; color: #000;}
+.orange {background-color: #f70; color: #000;}
