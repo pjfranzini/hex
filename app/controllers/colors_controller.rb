@@ -47,6 +47,11 @@ class ColorsController < ApplicationController
     # since we don't count on the user putting a #, strip it off if it is there and put it back on
     @see_this_color = '#'+params[:see_this_color].gsub(/[#]/, '')
     @computer_color = Color.find(2)
+    # not very dry, but have to keep this color defined
+    respond_to do |format|
+      format.html { }
+      format.js { }
+    end
 
   end
 

@@ -1,4 +1,4 @@
-<%= form_tag(colors_visualize_path, method: "post") do %>
+<%= form_tag(colors_visualize_path, method: "post", remote: true) do %>
   <%= text_field_tag(:see_this_color) %>
   <%= submit_tag("Visualize") %>
 <% end %>
