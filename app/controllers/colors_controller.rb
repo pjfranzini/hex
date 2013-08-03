@@ -41,6 +41,8 @@ class ColorsController < ApplicationController
   def help
     # since layout uses a color object to set background color, pull up color 2 (white) for background of help page
     @computer_color = Color.find(2)
+    # set difficulty to something that doesn't match any of the real difficulties, so that when a player goes back to the game from the help page the game will reset instead of continuing on having missed a color
+    session[:difficulty] = 'help'
   end
 
   def visualize
