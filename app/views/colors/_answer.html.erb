@@ -9,6 +9,6 @@
 
   <% else %>
     <p class="big-type"> Congratulations! You finished the set.</p>
-     <p class="big-type"> Final Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.to_s %></p>
+     <p class="big-type"> Final Score <%= @cumulative_score.round(0)+@time_bonus.round(0) %>/<%= @max_possible_score.to_s %></p>
 
   <% end %>

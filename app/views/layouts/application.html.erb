@@ -19,12 +19,11 @@
 
             <li><a href="#" onclick="return false;" class="score-bar">
               <% if @cumulative_score %>
-                Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>
+              <%= render "shared/scorebar" %>
               <% end %></a></li>
             <li><a href="#" onclick="return false;" class="timer-bar">
-              <% if @timer  %>
-                Time Bonus <%= @time_bonus.round(0) %>
-            <% end %></a></li>
+                <%= render "shared/timerbar" %>
+              </a></li>
           </ul>
 
        </div>

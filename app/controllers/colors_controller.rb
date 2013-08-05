@@ -13,9 +13,6 @@ class ColorsController < ApplicationController
 
     @cumulative_score = session[:cumulative_score] if session[:cumulative_score]
     @max_possible_score = session[:max_possible_score] if session[:max_possible_score]
-    if session[:timer] && session[:elapsed_time] != 0
-      session[:time_bonus] = session[:time_bonus] + (10-session[:elapsed_time])*10
-    end
     @time_bonus = session[:time_bonus]
     session[:start_time] = Time.now if session[:timer]
 
@@ -38,6 +35,7 @@ class ColorsController < ApplicationController
   end
 
   def score
+    @timer = session[:timer]
     @computer_color = Color.find(params[:computer_color_id])
     @players_rgbvalue = params[:players_rgbvalue].gsub(/[#]/, '')
     #allow player to input colors with or without # in front
@@ -50,6 +48,10 @@ class ColorsController < ApplicationController
     @difficulty = session[:difficulty]
     @colors_left = session[:num_colors]
     session[:elapsed_time] = Time.now - session[:start_time]
+    if session[:timer] && session[:elapsed_time] != 0
+      session[:time_bonus] = session[:time_bonus] + (10-session[:elapsed_time])*10
+    end
+    @time_bonus = session[:time_bonus]
     respond_to do |format|
         format.html { }
         format.js { }

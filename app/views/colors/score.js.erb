@@ -1,5 +1,5 @@
 $('.score-content').show();
 $('.score-content').html("<%= escape_javascript render('answer') %>");
 $('.display-content').html("<%= escape_javascript render('next') %>");
- $('.score-bar').html(" Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>")
-
+$('.score-bar').html("<%= escape_javascript render('shared/scorebar') %>")
+$('.timer-bar').html("<%= escape_javascript render('shared/timerbar') %>")
