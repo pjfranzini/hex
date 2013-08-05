@@ -1,8 +1,6 @@
 class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
-    reset_everything_if_user_changed_difficulty
-
     @difficulty = params[:difficulty] || "easy"
     session[:difficulty] = @difficulty
     @timer = session[:timer]
@@ -85,13 +83,6 @@ class ColorsController < ApplicationController
       # initialize the score variables
       session[:cumulative_score] = 0
       session[:max_possible_score] = 0
-    end
-  end
-
-  def reset_everything_if_user_changed_difficulty
-    # if there is a difficulty already set in session, and user sends in a different one via params, clear the session memory of color_array and score
-    if session[:difficulty] && params[:difficulty] != session[:difficulty]
-      reset_everything
     end
   end
 
