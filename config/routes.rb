@@ -4,6 +4,7 @@ Hex::Application.routes.draw do
   post "colors/score"
   get "colors/help"
   post "colors/visualize"
+  get "colors/timer_toggle"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

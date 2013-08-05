@@ -5,6 +5,7 @@ class ColorsController < ApplicationController
 
     @difficulty = params[:difficulty] || "easy"
     session[:difficulty] = @difficulty
+    @timer = session[:timer]
 
     make_session_array_if_needed
   	@computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
@@ -18,7 +19,12 @@ class ColorsController < ApplicationController
     format.html { }
     format.js { }
     end
+  end
 
+  def timer_toggle
+    session[:timer] = !session[:timer]
+    difficulty = session[:difficulty]
+    redirect_to color_path(difficulty)
   end
 
   def score

@@ -15,6 +15,7 @@
             <li class="<%= 'active' if current_page?(color_path(:easy)) %>"><a href="/colors/display/easy" class="easy">Easy</a></li>
             <li class="<%= 'active' if current_page?(color_path(:medium)) %>"><a href="/colors/display/medium">Medium</a></li>
             <li class="<%= 'active' if current_page?(color_path(:hard)) %>"><a href="/colors/display/hard">Hard</a></li>
+            <li class="<%= 'active' if @timer %>"><a href="/colors/timer_toggle" class="timer">Timer Toggle</a></li>
 
             <li><a href="#" onclick="return false;" class="score-bar">
             <% if @cumulative_score %>
