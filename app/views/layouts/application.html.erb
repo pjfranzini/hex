@@ -22,8 +22,8 @@
                 Total Score <%= @cumulative_score.round(0) %>/<%= @max_possible_score.round(0) %>
               <% end %></a></li>
             <li><a href="#" onclick="return false;" class="timer-bar">
-              <% if @time_bonus  %>
-                Time Bonus <%= @time_bonus.round(0) %> s
+              <% if @timer  %>
+                Time Bonus <%= @time_bonus.round(0) %>
             <% end %></a></li>
           </ul>
 

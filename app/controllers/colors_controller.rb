@@ -2,6 +2,7 @@ class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
     @difficulty = params[:difficulty] || "easy"
+    # later take off default easy maybe
     session[:difficulty] = @difficulty
     @timer = session[:timer]
 
@@ -12,7 +13,10 @@ class ColorsController < ApplicationController
 
     @cumulative_score = session[:cumulative_score] if session[:cumulative_score]
     @max_possible_score = session[:max_possible_score] if session[:max_possible_score]
-    @time_bonus = (5-session[:elapsed_time])*10
+    if session[:timer] && session[:elapsed_time] != 0
+      session[:time_bonus] = session[:time_bonus] + (10-session[:elapsed_time])*10
+    end
+    @time_bonus = session[:time_bonus]
     session[:start_time] = Time.now if session[:timer]
 
     respond_to do |format|
@@ -29,8 +33,7 @@ class ColorsController < ApplicationController
 
   def fresh
     # start a fresh game
-    @difficulty = params[:difficulty]
-    session[:start_time] = Time.now if session[:timer]
+    @difficulty = params[:difficulty] || "easy"
     reset_redirect
   end
 
@@ -43,6 +46,7 @@ class ColorsController < ApplicationController
     session[:max_possible_score] += 100
     @cumulative_score = session[:cumulative_score]
     @max_possible_score = session[:max_possible_score]
+    @time_bonus = session[:time_bonus]
     @difficulty = session[:difficulty]
     @colors_left = session[:num_colors]
     session[:elapsed_time] = Time.now - session[:start_time]
@@ -91,10 +95,12 @@ class ColorsController < ApplicationController
   end
 
   def reset_everything
-    # split off the reset from the check so that it can be used elsewhere
       session[:color_array] = nil
       session[:cumulative_score] = nil
       session[:max_possible_score] = nil
+      session[:time_bonus] = 0
+      session[:elapsed_time] = 0
+      session[:start_time] = Time.now if session[:timer]
   end
 
   def reset_redirect

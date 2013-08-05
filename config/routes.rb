@@ -1,5 +1,5 @@
 Hex::Application.routes.draw do
-  root 'colors#display'
+  root 'colors#fresh'
   get "colors/display/:difficulty", to: 'colors#display', as: "color"
   post "colors/score"
   get "colors/help"
