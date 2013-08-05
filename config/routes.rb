@@ -5,6 +5,7 @@ Hex::Application.routes.draw do
   get "colors/help"
   post "colors/visualize"
   get "colors/timer_toggle"
+  get "colors/fresh/:difficulty", to: 'colors#fresh', as: "fresh"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

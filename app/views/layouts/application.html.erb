@@ -12,9 +12,9 @@
        <div class="navbar-inner">
           <ul class="nav">
             <li class="<%= 'active' if current_page?(colors_help_path) %>"><a href="/colors/help" class="help">Help</a></li>
-            <li class="<%= 'active' if current_page?(color_path(:easy)) %>"><a href="/colors/display/easy" class="easy">Easy</a></li>
-            <li class="<%= 'active' if current_page?(color_path(:medium)) %>"><a href="/colors/display/medium">Medium</a></li>
-            <li class="<%= 'active' if current_page?(color_path(:hard)) %>"><a href="/colors/display/hard">Hard</a></li>
+            <li class="<%= 'active' if current_page?(color_path(:easy)) %>"><a href="/colors/fresh/easy" class="easy">Easy</a></li>
+            <li class="<%= 'active' if current_page?(color_path(:medium)) %>"><a href="/colors/fresh/medium">Medium</a></li>
+            <li class="<%= 'active' if current_page?(color_path(:hard)) %>"><a href="/colors/fresh/hard">Hard</a></li>
             <li class="<%= 'active' if @timer %>"><a href="/colors/timer_toggle" class="timer">Timer Toggle</a></li>
 
             <li><a href="#" onclick="return false;" class="score-bar">

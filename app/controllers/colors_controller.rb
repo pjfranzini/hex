@@ -23,8 +23,14 @@ class ColorsController < ApplicationController
 
   def timer_toggle
     session[:timer] = !session[:timer]
-    difficulty = session[:difficulty]
-    redirect_to color_path(difficulty)
+    @difficulty = session[:difficulty]
+    reset_redirect
+  end
+
+  def fresh
+    # start a fresh game
+    @difficulty = params[:difficulty]
+    reset_redirect
   end
 
   def score
@@ -47,8 +53,6 @@ class ColorsController < ApplicationController
   def help
     # since layout uses a color object to set background color, pull up color 2 (white) for background of help page
     @computer_color = Color.find(2)
-    # set difficulty to something that doesn't match any of the real difficulties, so that when a player goes back to the game from the help page the game will reset instead of continuing on having missed a color
-    session[:difficulty] = 'help'
   end
 
   def visualize
@@ -87,9 +91,19 @@ class ColorsController < ApplicationController
   def reset_everything_if_user_changed_difficulty
     # if there is a difficulty already set in session, and user sends in a different one via params, clear the session memory of color_array and score
     if session[:difficulty] && params[:difficulty] != session[:difficulty]
+      reset_everything
+    end
+  end
+
+  def reset_everything
+    # split off the reset from the check so that it can be used elsewhere
       session[:color_array] = nil
       session[:cumulative_score] = nil
       session[:max_possible_score] = nil
-    end
+  end
+
+  def reset_redirect
+    reset_everything
+    redirect_to color_path(@difficulty)
   end
 end
