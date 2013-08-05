@@ -1,19 +1,13 @@
 class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
-    @difficulty = params[:difficulty] || "easy"
-    # later take off default easy maybe
+    @difficulty = params[:difficulty]
     session[:difficulty] = @difficulty
-    @timer = session[:timer]
-
     make_session_array_if_needed
   	@computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
     # decrement number of colors left in session
     session[:num_colors] -= 1
-
-    @cumulative_score = session[:cumulative_score] if session[:cumulative_score]
-    @max_possible_score = session[:max_possible_score] if session[:max_possible_score]
-    @time_bonus = session[:time_bonus]
+    set_timer_and_score_instance_variables
     session[:start_time] = Time.now if session[:timer]
 
     respond_to do |format|
@@ -35,23 +29,20 @@ class ColorsController < ApplicationController
   end
 
   def score
-    @timer = session[:timer]
+
     @computer_color = Color.find(params[:computer_color_id])
     @players_rgbvalue = params[:players_rgbvalue].gsub(/[#]/, '')
     #allow player to input colors with or without # in front
     @score = @computer_color.color_difference(@players_rgbvalue)
     session[:cumulative_score] += @score
     session[:max_possible_score] += 100
-    @cumulative_score = session[:cumulative_score]
-    @max_possible_score = session[:max_possible_score]
-    @time_bonus = session[:time_bonus]
     @difficulty = session[:difficulty]
     @colors_left = session[:num_colors]
     session[:elapsed_time] = Time.now - session[:start_time]
     if session[:timer] && session[:elapsed_time] != 0
       session[:time_bonus] = session[:time_bonus] + (10-session[:elapsed_time])*10
     end
-    @time_bonus = session[:time_bonus]
+    set_timer_and_score_instance_variables
     respond_to do |format|
         format.html { }
         format.js { }
@@ -96,17 +87,20 @@ class ColorsController < ApplicationController
     end
   end
 
-  def reset_everything
-      session[:color_array] = nil
-      session[:cumulative_score] = nil
-      session[:max_possible_score] = nil
-      session[:time_bonus] = 0
-      session[:elapsed_time] = 0
-      session[:start_time] = Time.now if session[:timer]
+  def set_timer_and_score_instance_variables
+    @timer = session[:timer]
+    @cumulative_score = session[:cumulative_score] if session[:cumulative_score]
+    @max_possible_score = session[:max_possible_score] if session[:max_possible_score]
+    @time_bonus = session[:time_bonus]
   end
 
   def reset_redirect
-    reset_everything
+    session[:color_array] = nil
+    session[:cumulative_score] = nil
+    session[:max_possible_score] = nil
+    session[:time_bonus] = 0
+    session[:elapsed_time] = 0
+    session[:start_time] = Time.now if session[:timer]
     redirect_to color_path(@difficulty)
   end
 end
