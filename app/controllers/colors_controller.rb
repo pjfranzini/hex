@@ -55,8 +55,10 @@ class ColorsController < ApplicationController
   end
 
   def custom
-    Color.create [{rgbvalue: '05c', difficulty_level: 'custom'}]
-    #need to set up a session_array of custom colors and then pick them one by one
+    Color.create [{rgbvalue: 'c5c', difficulty_level: 'custom'}]
+    # need to set up a session_array of custom colors and then pick them one by one
+    # but first test with 1
+    @computer_color = Color.find_by(rgbvalue: 'c5c')
   end
 
   def visualize

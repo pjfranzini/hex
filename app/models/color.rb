@@ -2,7 +2,7 @@ class Color < ActiveRecord::Base
 
   MAX = 15 * 3**0.5
 
-  def generate_color()
+  def self.generate_colors()
   end
 
   def color_difference(players_rgbvalue)
