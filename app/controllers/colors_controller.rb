@@ -2,6 +2,9 @@ class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
     @difficulty = params[:difficulty]
+    if @difficulty == "custom"
+      Color.generate_colors
+    end
     do_display_work
   end
 
@@ -43,15 +46,15 @@ class ColorsController < ApplicationController
     @computer_color = Color.find(2)
   end
 
-  def custom
-    # Color.create [{rgbvalue: 'c5c', difficulty_level: 'custom'}]
-    # # need to set up a session_array of custom colors and then pick them one by one
-    # # but first test with 1
-    # @computer_color = Color.find_by(rgbvalue: 'c5c')
-    Color.generate_colors
-    @difficulty = "custom"
-    do_display_work
-  end
+  # def custom
+  #   # Color.create [{rgbvalue: 'c5c', difficulty_level: 'custom'}]
+  #   # # need to set up a session_array of custom colors and then pick them one by one
+  #   # # but first test with 1
+  #   # @computer_color = Color.find_by(rgbvalue: 'c5c')
+  #   Color.generate_colors
+  #   @difficulty = "custom"
+  #   do_display_work
+  # end
 
   def visualize
     # since we don't count on the user putting a #, strip it off if it is there and put it back on
