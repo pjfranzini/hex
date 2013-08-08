@@ -33,9 +33,9 @@ class Color < ActiveRecord::Base
     # rgbval_array = ['555','55a','5a5','aa5']   #initial static test array
     rgbval_array.each do |rgbval|
       # stop filling array with multiple copies of same color!
-      # note: modify this eventually, as dont want to avoid creating of colors in custom set
+      # modified this, as dont want to avoid creating of colors in custom set
       # that also exist in other sets
-      unless Color.find_by(rgbvalue: rgbval)
+      unless Color.find_by(rgbvalue: rgbval, difficulty_level: "custom")
         Color.create [{rgbvalue: rgbval, difficulty_level: "custom"}]
       end
     end

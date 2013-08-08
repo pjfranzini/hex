@@ -3,7 +3,7 @@ class ColorsController < ApplicationController
   def display
     @difficulty = params[:difficulty]
     if @difficulty == "custom"
-      Color.generate_colors(['a','b','c','d','e'])
+      Color.generate_colors(['3','a'])
     end
     do_display_work
   end
@@ -30,6 +30,10 @@ class ColorsController < ApplicationController
     session[:max_possible_score] += 100
     @difficulty = session[:difficulty]
     @colors_left = session[:num_colors]
+    if @difficulty == 'custom' && @colors_left == 0
+    # clear custom colors if a custom game is finished
+      Color.where({difficulty_level: 'custom'}).destroy_all
+    end
     session[:elapsed_time] = Time.now - session[:start_time]
     if session[:timer] && session[:elapsed_time] != 0
       session[:time_bonus] = session[:time_bonus] + (10-session[:elapsed_time])*10
@@ -97,6 +101,8 @@ class ColorsController < ApplicationController
   end
 
   def reset_redirect
+    # clear the custom colors in case this wasn't done on game finish because game wasnt finished
+    Color.where({difficulty_level: 'custom'}).destroy_all
     session[:color_array] = nil
     session[:cumulative_score] = nil
     session[:max_possible_score] = nil
