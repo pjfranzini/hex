@@ -2,13 +2,35 @@ class Color < ActiveRecord::Base
 
   MAX = 15 * 3**0.5
 
-  def self.generate_colors#(hex_digit_array)
-    #num_digits = hex_digit_array.length
-    # hex_digit_array = [0,8]
-    # hex_digit_array.each do |hex_digit|
-    #   rgbval_array << hex_digit
-    # end
-    rgbval_array = ['555','55a','5a5','aa5']
+  def self.generate_colors(digits)
+    # btw make sure digits come in as strings
+    # initialize arrays; one for an array of one digit hex codes, e.g., ['0','5','a']
+    ones = []
+    # another for two digit hex codes, eg, ['00','05','0a','50',...]; and one for the final three digit codes
+    twos = []
+    rgbval_array = []
+
+    # just in case, sort digits (this will mainly be useful for the string that will later replace 'custom' with, eg. '05a')
+
+    digits.sort!
+
+    digits.each do |digit|
+      ones << digit
+    end
+
+    ones.each do |first_digit|
+      digits.each do |digit|
+        twos << first_digit + digit
+      end
+    end
+
+    twos.each do |first_two|
+      digits.each do |digit|
+        rgbval_array << first_two + digit
+      end
+    end
+
+    # rgbval_array = ['555','55a','5a5','aa5']   #initial static test array
     rgbval_array.each do |rgbval|
       # stop filling array with multiple copies of same color!
       unless Color.find_by(rgbvalue: rgbval)
