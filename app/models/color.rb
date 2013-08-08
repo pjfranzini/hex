@@ -2,6 +2,9 @@ class Color < ActiveRecord::Base
 
   MAX = 15 * 3**0.5
 
+  def generate_color()
+  end
+
   def color_difference(players_rgbvalue)
   	# magnitude of the vector difference a-b
   	# for 3-digit hex rgb strings thought of as vectors

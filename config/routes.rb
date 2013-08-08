@@ -3,6 +3,7 @@ Hex::Application.routes.draw do
   get "colors/display/:difficulty", to: 'colors#display', as: "color"
   post "colors/score"
   get "colors/help"
+  get "colors/custom"
   post "colors/visualize"
   get "colors/timer_toggle"
   get "colors/fresh/:difficulty", to: 'colors#fresh', as: "fresh"

@@ -54,6 +54,10 @@ class ColorsController < ApplicationController
     @computer_color = Color.find(2)
   end
 
+  def custom
+    @computer_color = Color.create[{rgbvalue: '55f', difficulty_level: 'custom'}]
+  end
+
   def visualize
     # since we don't count on the user putting a #, strip it off if it is there and put it back on
     @see_this_color = '#'+params[:see_this_color].gsub(/[#]/, '')
