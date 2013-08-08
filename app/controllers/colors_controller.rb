@@ -2,18 +2,7 @@ class ColorsController < ApplicationController
   # MAX = 15 * 3**0.5
   def display
     @difficulty = params[:difficulty]
-    session[:difficulty] = @difficulty
-    make_session_array_if_needed
-  	@computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
-    # decrement number of colors left in session
-    session[:num_colors] -= 1
-    set_timer_and_score_instance_variables
-    session[:start_time] = Time.now if session[:timer]
-
-    respond_to do |format|
-    format.html { }
-    format.js { }
-    end
+    do_display_work
   end
 
   def timer_toggle
@@ -55,10 +44,13 @@ class ColorsController < ApplicationController
   end
 
   def custom
-    Color.create [{rgbvalue: 'c5c', difficulty_level: 'custom'}]
-    # need to set up a session_array of custom colors and then pick them one by one
-    # but first test with 1
-    @computer_color = Color.find_by(rgbvalue: 'c5c')
+    # Color.create [{rgbvalue: 'c5c', difficulty_level: 'custom'}]
+    # # need to set up a session_array of custom colors and then pick them one by one
+    # # but first test with 1
+    # @computer_color = Color.find_by(rgbvalue: 'c5c')
+    Color.generate_colors
+    @difficulty = "custom"
+    do_display_work
   end
 
   def visualize
@@ -109,5 +101,20 @@ class ColorsController < ApplicationController
     session[:elapsed_time] = 0
     session[:start_time] = Time.now if session[:timer]
     redirect_to color_path(@difficulty)
+  end
+
+  def do_display_work
+    session[:difficulty] = @difficulty
+    make_session_array_if_needed
+    @computer_color = Color.find_by(rgbvalue: session[:color_array].slice!(0))
+    # decrement number of colors left in session
+    session[:num_colors] -= 1
+    set_timer_and_score_instance_variables
+    session[:start_time] = Time.now if session[:timer]
+
+    respond_to do |format|
+    format.html { }
+    format.js { }
+    end
   end
 end

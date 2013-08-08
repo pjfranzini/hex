@@ -2,7 +2,19 @@ class Color < ActiveRecord::Base
 
   MAX = 15 * 3**0.5
 
-  def self.generate_colors()
+  def self.generate_colors#(hex_digit_array)
+    #num_digits = hex_digit_array.length
+    # hex_digit_array = [0,8]
+    # hex_digit_array.each do |hex_digit|
+    #   rgbval_array << hex_digit
+    # end
+    rgbval_array = ['555','55a','5a5','aa5']
+    rgbval_array.each do |rgbval|
+      # stop filling array with multiple copies of same color!
+      unless Color.find_by(rgbvalue: rgbval)
+        Color.create [{rgbvalue: rgbval, difficulty_level: "custom"}]
+      end
+    end
   end
 
   def color_difference(players_rgbvalue)
