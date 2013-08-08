@@ -3,7 +3,7 @@ class ColorsController < ApplicationController
   def display
     @difficulty = params[:difficulty]
     if @difficulty == "custom"
-      Color.generate_colors(['4','8','c','3'])
+      Color.generate_colors(['a','b','c','d','e'])
     end
     do_display_work
   end
